@@ -11,7 +11,14 @@ int main() {
 	while (true) {
 		Mat frame;
 		cap >> frame;
+
+		int width = frame.size().width;
+		int height = frame.size().height;
+
 		imshow("live demo", frame);
+
+
+
 		if (waitKey(30) >= 0) {
 			break;
 		}
