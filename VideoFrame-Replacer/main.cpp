@@ -1,5 +1,7 @@
 #include <opencv2/opencv.hpp>
+#include<iostream>
 
+using namespace std;
 using namespace cv;
 
 int main() {
@@ -8,13 +10,20 @@ int main() {
 		return -1;
 	}
 
+	Mat frame;
+	
 	while (true) {
-		Mat frame;
+		
 		cap >> frame;
 
 		int width = frame.size().width;
 		int height = frame.size().height;
+		int widthOfEachTile = width / 3;
+		int heightOfEachTile = height / 3;
 
+
+		Mat firstTile = frame(Rect(0, 0, widthOfEachTile, heightOfEachTile));
+		firstTile.copyTo(frame(Rect(widthOfEachTile, heightOfEachTile, widthOfEachTile, heightOfEachTile)));
 		imshow("live demo", frame);
 
 
@@ -23,6 +32,7 @@ int main() {
 			break;
 		}
 	}
+
 
 	return 0;
 }
